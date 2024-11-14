@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title th:utext="${title}"></title>
+	  <!--<meta name="_csrf" th:content="${_csrf.token}"> -->
+   </head>
+   
+   <body>
+   
+      <!-- Include _menu.html -->
+      <th:block th:include="/menu"></th:block>  
+      
+      <h2>Books</h2>
+      
+	  <div th:if="${message}" style="color: green;">
+	      <p th:text="${message}"></p>
+	  </div>
+      
+      <table border="1">
+            <tr>
+			    <th>Id</th>
+               <th>Title</th>
+               <th>Author</th>
+			   <th>ISBN</th>
+			   <th>Published Date</th>
+			   <th>Status</th>
+			   <th>Modifier</th>
+			   <!--<th sec:authorize="hasRole('ADMIN')">Supprimer</th>-->
+            </tr>
+            <tr th:each ="book : ${books}">
+               <td th:utext="${book.id}">...</td>
+               <td th:utext="${book.title}">...</td>
+               <td th:utext="${book.author}">...</td>
+			   <td th:utext="${book.isbn}">...</td>
+			   <td th:utext="${book.publishedDate}">...</td>
+			   <td th:utext="${book.status}">...</td>
+			   <td><a th:href="@{/update(id=${book.id})}">Modifier</a></td>
+			   <!--<td sec:authorize="hasRole('ADMIN')"><a href="#" th:onclick="|deleteUser('${user.id}'); return false;|">Supprimer</a></td>-->
+            </tr>
+      </table>
+      
+	  <a th:href="@{/ajoutBook}">Ajouter un livre</a>
+	  
+	  <!--<script>
+		function deleteUser(id) {
+		    const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+		    if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
+		        fetch(`/delete?id=${id}`, {
+		            method: 'DELETE',
+		            headers: {
+		                'X-CSRF-TOKEN': csrfToken
+		            }
+		        })
+		        .then(response => {
+		            if (response.ok) {
+		                location.reload(); // Rechargez la page après la suppression
+		            } else {
+		                alert('Erreur lors de la suppression de l\'utilisateur : ' + response.status);
+		            }
+		        })
+		        .catch(error => {
+		            alert('Erreur lors de la suppression de l\'utilisateur : ' + error);
+		        });
+		    }
+		}
+	  </script>-->
+   </body>
+</html>

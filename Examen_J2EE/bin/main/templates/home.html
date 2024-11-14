@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Accueil</title>
+	</head>
+	
+	<body>
+		<th:block th:include="/menu"></th:block> 
+		<h1 th:text="${message}">Message par défaut</h1>
+		
+		<!--div th:if="${username}" sec:authorize="isAuthenticated()">
+			<p>Utilisateur connecté : <span th:text="${username}"></span></p>
+			<p>Rôles : <span th:text="${roles}"></span></p>
+		</div>-->
+	</body>
+</html>

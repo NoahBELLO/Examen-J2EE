@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title th:utext="${title}"></title>
+   </head>
+   <body>
+      <!-- Include _menu.html -->
+      <th:block th:include="/menu"></th:block>
+      
+      <h2>Ajouter un livre</h2>
+	  
+	  <div th:if="${message}" style="color: green;">
+	  	      <p th:text="${message}"></p>
+	  	  </div>
+      
+      <form th:action="@{/book/ajoutBook}" th:object="${bookDto}" method="post">
+         <table>
+            <tr>
+               <td>Title</td>
+               <td><input type="text" th:field="*{title}" /></td>
+            </tr>
+			
+            <tr>
+               <td>Author</td>
+               <td><input type="text" th:field="*{author}" /> </td>
+            </tr>
+			
+			<tr>
+			   <td>ISBN</td>
+			   <td><input type="text" th:field="*{isbn}" /> </td>
+			</tr>
+			
+			<tr>
+			   <td>Published Date</td>
+			   <td><input type="text" th:field="*{publishedDate}" /> </td>
+			</tr>
+			
+			<tr>
+			   <td>Status</td>
+			   <td><input type="text" th:field="*{status}" /> </td>
+			</tr>
+            
+            <tr>
+               <td>&nbsp;</td>
+               <td>
+                  <input type="submit" value="Submit" />
+                  <a th:href="${bookLien}">Cancel</a>
+               </td>
+               <td>&nbsp;</td>
+            </tr>
+         </table>
+      </form>
+      
+   </body>
+</html>
